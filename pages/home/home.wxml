@@ -1,21 +1,23 @@
 <!--pages/home/home.wxml-->
 <view class="container">
-    <view class="tabs">
-        <view class="tab-item" wx:for="{{tabs}}" wx:key='index' data-index="{{index}}" bindtap="handleTabChange">
-            <view class="tab-label {{currentTabIndex===index?'active-tab':''}}">{{item}}</view>
-            <view class="divider" wx:if="{{currentTabIndex===index?'active-tab':''}}"></view>
+    <i-tabs tabs='{{tabs}}' bind:change='handleTabchange'>
+        <view slot='extend'>
+            <view class="category">
+                <!-- 让下一个元素漏一小半出来，display-multiple-items,next-margin -->
+                <swiper style="height: 150rpx;" display-multiple-items="{{2}}" next-margin="60rpx">
+                    <swiper-item wx:for="{{categoryList}}" wx:key="index" data-id="{{item.id}}"
+                        bindtap="handleCategory">
+                        <view class="category-swiper-item">
+                            <text class="category-name">{{item.name}}</text>
+                        </view>
+                    </swiper-item>
+                </swiper>
+            </view>
         </view>
+        <view slot="panel">
+        123123123123
+        </view>
+    </i-tabs>
 
-    </view>
-    <view class="category">
-        <!-- 让下一个元素漏一小半出来，next-margin -->
-        <swiper style="height: 150rpx;" display-multiple-items="{{2}}" next-margin="60rpx">
-            <swiper-item wx:for="{{categoryList}}" wx:key="index" data-id="{{item.id}}" bindtap="handleCategory">
-                <view class="category-swiper-item">
-                    <text class="category-name">{{item.name}}</text>
-                </view>
-            </swiper-item>
-        </swiper>
-    </view>
-    <view class="tabs-panel"></view>
+
 </view>

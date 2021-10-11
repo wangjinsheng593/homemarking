@@ -5,22 +5,21 @@ Page({
      * 页面的初始数据
      */
     data: {
-        tabs:['全部服务','在提供','正在找'],
-        currentTabIndex:0,
-        categoryList:[
-            {
-                'id':1,
-                "name":"保洁"
+        tabs: ['全部服务', '在提供', '正在找'],
+        currentTabIndex: 0,
+        categoryList: [{
+                'id': 1,
+                "name": "保洁"
             },
             {
-                'id':2,
-                "name":"汽修"
+                'id': 2,
+                "name": "汽修"
             },
             {
-                'id':3,
-                "name":"疏通"
+                'id': 3,
+                "name": "疏通"
             },
-       
+
         ],
     },
 
@@ -30,18 +29,14 @@ Page({
     onLoad: function (options) {
 
     },
-    
-    //列表头点击事件
-    handleTabChange(event){
-        const index =event.currentTarget.dataset.index 
-        this.setData({
-            currentTabIndex:index
-        })
+
+    //tab的点击事件
+    handleTabchange(data) {
+        console.log("tab的点击事件:",data.detail.index);
     },
 
     //分类点击事件
-    handleCategory(event){
-        console.log("分类点击事件:",event);
+    handleCategory(event) {
         const id = event.currentTarget.dataset.id
 
     },

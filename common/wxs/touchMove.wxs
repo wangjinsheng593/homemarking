@@ -1,0 +1,40 @@
+   var touchstartX
+
+   //触摸开始
+   function handleTouchstart(event) {
+       //数据绑定，记录触摸开始的x轴的位置
+       touchstartX = event.changedTouches[0].clientX
+   }
+
+   function handleTouchend(event, ownerInstance) {
+       //把结束时x轴的位置-触摸开始时的位置
+       //做判断，判断时往左滑还是往右滑
+       //做数据绑定，改变currentTabIndex的值
+       var touchEndX = event.changedTouches[0].clientX
+       //负数代表手指向左滑动,正数代表向右滑动
+       var distance = touchEndX - touchstartX
+       // -1:后退（向右滑动）  0：不动  1：前进（向左滑动）
+       var direction = 0
+       //direction<-70只有我们的手机触摸超过一定距离之后才触发方法
+       //向左划，前进
+       if (distance < 0 && distance < -70) {
+           direction = 1
+       }
+
+       //向右滑动 ,后退
+       if (distance > 0 && distance > 70) {
+           direction = -1
+       }
+       if (direction !== 0) {
+           //1.触发事件  2.直接调用引用该wxs的页面或组件的方法
+           //参数1调用的函数名称，参数2：携带的参数
+           ownerInstance.callMethod('handleTouchMove', {
+               direction: direction
+           })
+       }
+       touchstartX = 0
+   }
+   module.exports = {
+       handleTouchstart: handleTouchstart,
+       handleTouchend: handleTouchend
+   }
