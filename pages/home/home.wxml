@@ -15,7 +15,7 @@
             </view>
         </view>
         <view slot="panel">
-        123123123123
+        <view wx:for="{{serviceList}}" wx:key="index"></view>
         </view>
     </i-tabs>
 

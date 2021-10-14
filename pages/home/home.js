@@ -1,4 +1,9 @@
 // pages/home/home.js
+
+import Service from "../../model/service.js"
+import Category from "../../model/category"
+//模型类必须实列化之后才能使用
+const sevice = new Service();
 Page({
 
     /**
@@ -7,26 +12,30 @@ Page({
     data: {
         tabs: ['全部服务', '在提供', '正在找'],
         currentTabIndex: 0,
-        categoryList: [{
-                'id': 1,
-                "name": "保洁"
-            },
-            {
-                'id': 2,
-                "name": "汽修"
-            },
-            {
-                'id': 3,
-                "name": "疏通"
-            },
-
-        ],
+        categoryList: [],
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        this._getServiceList()
+        this._getCategoryList()
+
+    },
+    async _getServiceList(){
+       const serviceList =  await sevice.getServiceList(1,10)
+       this.setData({
+        serviceList:serviceList.data
+       })
+    },
+
+    async _getCategoryList(){
+        //因为Category是静态方法，所以不需要new实列化就能使用
+       const categoryList =  await Category.getCategoryListWithAll()
+       this.setData({
+        categoryList
+       })
 
     },
 
