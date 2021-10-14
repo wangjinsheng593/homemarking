@@ -25,6 +25,7 @@ Page({
     },
     async _getServiceList(){
        const serviceList =  await sevice.getServiceList(1,10)
+       console.log("服务列表：",serviceList);
        this.setData({
         serviceList:serviceList.data
        })
