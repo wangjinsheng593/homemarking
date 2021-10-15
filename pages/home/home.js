@@ -2,6 +2,7 @@
 
 import Service from "../../model/service.js"
 import Category from "../../model/category"
+import { throttle } from "../../utils/utils"
 //模型类必须实列化之后才能使用
 const sevice = new Service();
 Page({
@@ -44,12 +45,11 @@ Page({
     },
 
     //分类点击事件
-    handleCategoryChange(event) {
+    handleCategoryChange:throttle(function (event) {
         if (this.data.categoryId === event.currentTarget.dataset.id) return
         this.data.categoryId  = event.currentTarget.dataset.id
         this._getServiceList()
-
-    },
+    }),
     /**
      * 监听用户下拉动作--下拉刷新
      */

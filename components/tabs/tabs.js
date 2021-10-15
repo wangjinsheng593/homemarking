@@ -1,4 +1,5 @@
 // components/tabs/tabs.js
+import { throttle } from "../../utils/utils";
 Component({
     //开启多插槽的支持
     options:{
@@ -28,14 +29,15 @@ Component({
      */
     methods: {
         //列表头点击事件
-        handleTabChange(event) {
+        handleTabChange:throttle(function (event) {
             const index = event.currentTarget.dataset.index
             if (this.data.currentTabIndex === index) return
             this.setData({
                 currentTabIndex: index
             })
             this.triggerEvent('change', { index })
-        },
+        }),
+     
         handleTouchMove(event){
             //方向值 0,-1,1
             const direction = event.direction
