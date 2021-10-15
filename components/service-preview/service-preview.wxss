@@ -1,4 +1,4 @@
-@import "../../iconfont/index.wxss";
+
 .container{
     background-color: #ffffff;
     border-radius: 10rpx;
@@ -55,6 +55,9 @@
     align-items: center;
     margin-left: 20rpx;
 }
+.category-text{
+    margin-left: 10rpx;
+}
 .publisher{
     display: flex;
     align-items: center;
@@ -72,6 +75,7 @@
 
 }
 .score{
+    margin-left: 30rpx;
     color: #f27013;
 }
 .create-time{

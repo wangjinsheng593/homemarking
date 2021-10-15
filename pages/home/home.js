@@ -11,8 +11,10 @@ Page({
      */
     data: {
         tabs: ['全部服务', '在提供', '正在找'],
-        currentTabIndex: 0,
+        serviceList:[],
         categoryList: [],
+        tabIndex:0,
+        categoryId:0
     },
 
     /**
@@ -24,79 +26,50 @@ Page({
 
     },
     async _getServiceList(){
-       const serviceList =  await sevice.getServiceList(1,10)
-       console.log("服务列表：",serviceList);
-       this.setData({
-        serviceList:serviceList.data
-       })
+       const serviceList =  await sevice.reset().getServiceList(this.data.categoryId, this.data.tabIndex)
+       this.setData({serviceList})
     },
 
     async _getCategoryList(){
         //因为Category是静态方法，所以不需要new实列化就能使用
        const categoryList =  await Category.getCategoryListWithAll()
-       this.setData({
-        categoryList
-       })
+       this.setData({categoryList})
 
     },
 
     //tab的点击事件
-    handleTabchange(data) {
-        console.log("tab的点击事件:",data.detail.index);
+    handleTabchange(event) {
+        this.data.tabIndex = event.detail.index
+        this._getServiceList()
     },
 
     //分类点击事件
-    handleCategory(event) {
-        const id = event.currentTarget.dataset.id
+    handleCategoryChange(event) {
+        if (this.data.categoryId === event.currentTarget.dataset.id) return
+        this.data.categoryId  = event.currentTarget.dataset.id
+        this._getServiceList()
 
     },
-
     /**
-     * 生命周期函数--监听页面初次渲染完成
+     * 监听用户下拉动作--下拉刷新
      */
-    onReady: function () {
+    async onPullDownRefresh () {
+        this._getServiceList()
+        //取消下拉
+       wx.stopPullDownRefresh()
 
     },
-
     /**
-     * 生命周期函数--监听页面显示
+     * 上拉触底加载更多
      */
-    onShow: function () {
-
+    async onReachBottom(){
+        if (!sevice.hasMoreData) {
+            return
+        }
+        //获取下一页的数据并且和当前的数据合并
+        const serviceList =  await sevice.getServiceList(this.data.categoryId, this.data.tabIndex)
+        this.setData({serviceList})
     },
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
+   
 })

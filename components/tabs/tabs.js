@@ -30,7 +30,7 @@ Component({
         //列表头点击事件
         handleTabChange(event) {
             const index = event.currentTarget.dataset.index
-            if (this.data.currentTabIndex = index) return
+            if (this.data.currentTabIndex === index) return
             this.setData({
                 currentTabIndex: index
             })

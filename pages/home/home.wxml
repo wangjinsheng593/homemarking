@@ -6,7 +6,7 @@
                 <!-- 让下一个元素漏一小半出来，display-multiple-items,next-margin -->
                 <swiper style="height: 150rpx;" display-multiple-items="{{2}}" next-margin="60rpx">
                     <swiper-item wx:for="{{categoryList}}" wx:key="index" data-id="{{item.id}}"
-                        bindtap="handleCategory">
+                        bindtap="handleCategoryChange">
                         <view class="category-swiper-item">
                             <text class="category-name">{{item.name}}</text>
                         </view>
