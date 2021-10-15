@@ -1,9 +1,10 @@
 /* pages/home/home.wxss */
-
+@import "./home.skeleton.wxss";
 .container{
     height: 100%;
 }
 .category{
+    background-color: #ffffff;
     padding: 30rpx 0 30rpx 30rpx;
 
 }
@@ -18,4 +19,7 @@
     top: 20rpx;
     left: 20rpx;
     color: #fff;
+}
+.service-preview {
+    margin-bottom: 30rpx;
 }

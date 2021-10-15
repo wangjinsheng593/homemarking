@@ -8,8 +8,9 @@
     "window": {
         "backgroundTextStyle": "dark",
         "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "Weixin",
-        "navigationBarTextStyle": "black"
+        "navigationBarTitleText": "家政",
+        "navigationBarTextStyle": "black",
+        "backgroundColorBottom": "#efefef"
     },
     "tabBar": {
         "borderStyle": "white",
@@ -46,6 +47,7 @@
     "usingComponents": {
         "i-tabs": "/components/tabs/tabs",
         "i-service-preview": "/components/service-preview/service-preview",
-        "i-icon": "/components/icon/icon"
+        "i-icon": "/components/icon/icon",
+        "i-show-status": "/components/show-status/show-status"
     }
 }

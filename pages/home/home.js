@@ -2,7 +2,9 @@
 
 import Service from "../../model/service.js"
 import Category from "../../model/category"
-import { throttle } from "../../utils/utils"
+import {
+    throttle
+} from "../../utils/utils"
 //模型类必须实列化之后才能使用
 const sevice = new Service();
 Page({
@@ -12,29 +14,37 @@ Page({
      */
     data: {
         tabs: ['全部服务', '在提供', '正在找'],
-        serviceList:[],
+        serviceList: [],
         categoryList: [],
-        tabIndex:0,
-        categoryId:0
+        tabIndex: 0,
+        categoryId: 0,
+        loading: true
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-        this._getServiceList()
-        this._getCategoryList()
+    onLoad: async function (options) {
+        await this._getServiceList()
+        await this._getCategoryList()
+        this.setData({
+            loading: false
+        })
 
     },
-    async _getServiceList(){
-       const serviceList =  await sevice.reset().getServiceList(this.data.categoryId, this.data.tabIndex)
-       this.setData({serviceList})
+    async _getServiceList() {
+        const serviceList = await sevice.reset().getServiceList(this.data.categoryId, this.data.tabIndex)
+        this.setData({
+            serviceList
+        })
     },
 
-    async _getCategoryList(){
+    async _getCategoryList() {
         //因为Category是静态方法，所以不需要new实列化就能使用
-       const categoryList =  await Category.getCategoryListWithAll()
-       this.setData({categoryList})
+        const categoryList = await Category.getCategoryListWithAll()
+        this.setData({
+            categoryList
+        })
 
     },
 
@@ -45,31 +55,33 @@ Page({
     },
 
     //分类点击事件
-    handleCategoryChange:throttle(function (event) {
+    handleCategoryChange: throttle(function (event) {
         if (this.data.categoryId === event.currentTarget.dataset.id) return
-        this.data.categoryId  = event.currentTarget.dataset.id
+        this.data.categoryId = event.currentTarget.dataset.id
         this._getServiceList()
     }),
     /**
      * 监听用户下拉动作--下拉刷新
      */
-    async onPullDownRefresh () {
+    async onPullDownRefresh() {
         this._getServiceList()
         //取消下拉
-       wx.stopPullDownRefresh()
+        wx.stopPullDownRefresh()
 
     },
     /**
      * 上拉触底加载更多
      */
-    async onReachBottom(){
+    async onReachBottom() {
         if (!sevice.hasMoreData) {
             return
         }
         //获取下一页的数据并且和当前的数据合并
-        const serviceList =  await sevice.getServiceList(this.data.categoryId, this.data.tabIndex)
-        this.setData({serviceList})
+        const serviceList = await sevice.getServiceList(this.data.categoryId, this.data.tabIndex)
+        this.setData({
+            serviceList
+        })
     },
 
-   
+
 })

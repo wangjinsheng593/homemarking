@@ -3,5 +3,6 @@
 page{
     height: 100%;
     color: #333333;
+    background: #efefef;
 }
  
