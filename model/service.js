@@ -38,7 +38,15 @@ class Service extends Base{
         return Http.request({
             url: `v1/service/${serviceId}`
         })
+    }
 
+    static updateServiceStatus(serviceId,action){
+        return Http.request({
+            url:`v1/service/${serviceId}`,
+            data:{
+                action
+            }
+        })
     }
  
 

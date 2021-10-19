@@ -6,7 +6,7 @@
     <button wx:if="{{service.status !==serviceStatusEnum.CANCELED && service.status !==serviceStatusEnum.OFF_SHELVES}}"
         bind:tap="handleEditService">修改服务</button>
     <button bind:tap="handleUpdateStatus" data-action="{{serviceActionEnum.CANCEL}}"
-        wx:if="{{service.status ===serviceStatusEnum.PAUSE}}">暂停服务</button>
+        wx:if="{{service.status ===serviceStatusEnum.PUBLISHED}}">暂停服务</button>
     <button bind:tap="handleUpdateStatus" data-action="{{serviceActionEnum.PUBLISH}}"
         wx:if="{{service.status ===serviceStatusEnum.UNPUBLISHED}}">发布</button>
 </view>

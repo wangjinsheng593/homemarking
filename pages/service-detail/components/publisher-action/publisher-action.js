@@ -1,5 +1,6 @@
 import serviceAction from "../../../../enum/service-ation";
 import serviceStatus from "../../../../enum/service-status";
+import { getDataSet } from "../../../../utils/utils";
 
 Component({
     /**
@@ -22,10 +23,11 @@ Component({
      */
     methods: {
         handleUpdateStatus(event){
-            console.log("更新状态：",event);
+            const action = getDataSet(event,'action')
+            this.triggerEvent('update',{action})
         },
-        handleEditService(event){
-            console.log("修改服务：",event);
+        handleEditService(){
+            this.triggerEvent('edit')
         }
 
     }

@@ -20,11 +20,11 @@ Component({
      * 组件的方法列表
      */
     methods: {
-        handleChat(event){
-            console.log("handleChat:",event);
+        handleChat(){
+            this.triggerEvent('chat')
         },
-        handleOrder(event){
-            console.log("handleOrder:",event);
+        handleOrder(){
+            this.triggerEvent('order')
         }
 
     }

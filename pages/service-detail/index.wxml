@@ -55,8 +55,11 @@
         </view>
     </view>
     <view class="action-bar">
-        <i-publisher-action wx:if="{{isPublisher}}" service="{{service}}"></i-publisher-action>
-        <i-consumer-action wx:if="{{!isPublisher}}" service="{{service}}"></i-consumer-action>
+        <i-publisher-action wx:if="{{isPublisher}}" service="{{service}}" bind:update="handleUpdateStatus"
+            bind:edit="handleEditService">
+        </i-publisher-action>
+        <i-consumer-action wx:if="{{!isPublisher}}" service="{{service}}" bind:chat="handleChat"
+            bind:order="handleOrder"></i-consumer-action>
         <i-safe-area area='bottom'></i-safe-area>
 
     </view>
