@@ -1,15 +1,10 @@
-import serviceType from "../../enum/service-type";
-
-// components/service-preview/service-preview.js
+// components/safe-area/safe-area.js
 Component({
     /**
      * 组件的属性列表
      */
     properties: {
-        service:{
-            type:Object,
-            value: {}
-        }
+        area:String,
 
     },
 
@@ -17,7 +12,6 @@ Component({
      * 组件的初始数据
      */
     data: {
-        serviceTypeEnum:serviceType
 
     },
 

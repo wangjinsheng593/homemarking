@@ -60,6 +60,15 @@ Page({
         this.data.categoryId = event.currentTarget.dataset.id
         this._getServiceList()
     }),
+     
+    //选中服务
+    handleSerlectService(event){
+        const service =event.currentTarget.dataset.service
+        wx.navigateTo({
+          url: '/pages/service-detail/index?service_id='+service.id,
+        })
+    },
+
     /**
      * 监听用户下拉动作--下拉刷新
      */

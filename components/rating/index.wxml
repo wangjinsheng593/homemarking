@@ -1,0 +1,8 @@
+<!--components/rating/index.wxml-->
+<view class="contarner">
+    <view class="item" wx:for="{{count}}" wx:key="index">
+        <i-icon name="{{icon}}" size="{{size}}" color="{{index<selected?selectedColor:defaultColor}}">
+        </i-icon>
+
+    </view>
+</view>

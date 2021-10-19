@@ -2,7 +2,7 @@
 <view class="container">
     <view class="left">
         <view class="type-tag">
-            {{service.type === 1 ?'在提供':'正在找'}}
+            {{service.type === serviceTypeEnum.PROVIDE ?'在提供':'正在找'}}
         </view>
         <image class="cover-image" mode="aspectFill" src='{{service.cover_image.path}}'></image>
     </view>
@@ -28,7 +28,7 @@
                     {{service.publisher.nickname}}
                 </view>
             </view>
-            <view class="score">
+            <view class="score" wx:if="{{service.type === serviceTypeEnum.PROVIDE}}">
                 ❤ {{service.score}}
             </view>
         </view>
@@ -41,7 +41,7 @@
             <view class="price">
                 <text class="label">¥</text>{{service.price}}
             </view>
-            <view class="sales">
+            <view class="sales" wx:if="{{service.type === serviceTypeEnum.PROVIDE}}">
                 已售{{service.sales_volume}}
             </view>
         </view>

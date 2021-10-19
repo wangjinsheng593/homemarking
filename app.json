@@ -3,7 +3,8 @@
         "pages/home/home",
         "pages/message/message",
         "pages/my/my",
-        "pages/publish/publish"
+        "pages/publish/publish",
+        "pages/service-detail/index"
     ],
     "window": {
         "backgroundTextStyle": "dark",
@@ -16,7 +17,8 @@
         "borderStyle": "white",
         "selectedColor": "#FBC020",
         "color": "#8a8a8a",
-        "list": [{
+        "list": [
+            {
                 "pagePath": "pages/home/home",
                 "text": "广场",
                 "selectedIconPath": "images/tab-bar/square-selected.png",
@@ -48,6 +50,10 @@
         "i-tabs": "/components/tabs/tabs",
         "i-service-preview": "/components/service-preview/service-preview",
         "i-icon": "/components/icon/icon",
-        "i-show-status": "/components/show-status/show-status"
+        "i-show-status": "/components/show-status/show-status",
+        "i-avatar": "/components/avatar/index",
+        "i-rating": "/components/rating/index",
+        "i-service-rating": "/components/service-rating/index",
+        "i-safe-area": "/components/safe-area/safe-area"
     }
 }
