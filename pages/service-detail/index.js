@@ -1,3 +1,4 @@
+import cache from "../../config/cache"
 import serviceAction from "../../enum/service-ation"
 import serviceStatus from "../../enum/service-status"
 import serviceType from "../../enum/service-type"
@@ -33,8 +34,8 @@ Page({
         await this._getService()
         await this._getServiceRatingList()
         this._checkRole()
-
     },
+ 
     async _getService() {
         const service = await Service.getServiceById(this.data.serviceId)
         this.setData({
@@ -66,14 +67,41 @@ Page({
     //修改服务
     handleEditService() {
         console.log("修改服务");
+        const service = JSON.stringify(this.data.service)
+        wx.navigateTo({
+          url:`/pages/service-edit/service-edit?service=${service}` ,
+        })
     },
     //联系对方
     handleChat() {
         console.log("联系对方");
+        const targetUserId = this.data.service.publisher.id 
+        const service = JSON.stringify(this.data.service)
+        wx.navigateTo({
+          url: `/pages/conversation/conversation?targetUserId=${targetUserId}&service=${service}`,
+        })
     },
     //立即预约
     handleOrder(event) {
         console.log("立即预约");
+      
+        if (!wx.getStorageSync(cache.TOKEN)) {
+            wx.navigateTo({
+                url: '/pages/login/login',
+                //当点击立即预约之后检测事件
+                events:{
+                    login:()=> {
+                        this._checkRole()
+                    }
+                }
+            })
+            return
+        }
+        const service = JSON.stringify(this.data.service)
+        wx.navigateTo({
+            url: `/pages/order/order?service=${service}`,
+        })
+ 
     },
 
     _generateModalContent(action) {

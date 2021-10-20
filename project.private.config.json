@@ -13,9 +13,9 @@
         "miniprogram": {
             "list": [
                 {
-                    "name": "服务详情",
-                    "pathName": "pages/service-detail/index",
-                    "query": "service_id=14",
+                    "name": "登录",
+                    "pathName": "pages/login/login",
+                    "query": "",
                     "scene": null
                 }
             ]
