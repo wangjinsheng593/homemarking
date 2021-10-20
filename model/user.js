@@ -10,15 +10,15 @@ class User {
     static async login(){
         //获取令牌
         const token = await Token.getToken()
-        wx.setStorageSync(cache.token, token)
+        wx.setStorageSync(cache.TOKEN, token)
     }
 
-    static async updateUserInfo(){
+    static async updateUserInfo(userInfo){
         const res = await Http.request({
             url:'v1/user',
             data:{
-                nickname:userInfo.nickname,
-                avatar:userInfo.avatar,
+                nickname:userInfo.nickName,
+                avatar:userInfo.avatarUrl,
                 gender:userInfo.gender,
             },
             method:"PUT"

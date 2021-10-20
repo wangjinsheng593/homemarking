@@ -1,4 +1,4 @@
-
+@import "./index.skeleton.wxss";
 .container {
     font-size: 28rpx;
     box-sizing: border-box;
@@ -92,6 +92,9 @@
     padding-bottom: 30rpx;
     border-bottom: 1px solid #efefef;
 
+}
+.inner-container{
+    padding-bottom: 250rpx;
 }
 
 .action-bar {

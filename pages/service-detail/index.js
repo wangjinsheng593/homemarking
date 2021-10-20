@@ -22,7 +22,8 @@ Page({
         isPublisher: false,
         ratingList: [],
         serviceTypeEnum: serviceType,
-        serviceStatusEnum: serviceStatus
+        serviceStatusEnum: serviceStatus,
+        loading:true
 
     },
 
@@ -34,6 +35,7 @@ Page({
         await this._getService()
         await this._getServiceRatingList()
         this._checkRole()
+        this.setData({loading:false})
     },
  
     async _getService() {
@@ -43,6 +45,8 @@ Page({
         })
     },
     async _getServiceRatingList() {
+        //当前服务类型是正在找不用触发接口，因为不用显示
+        if (this.data.service.type === serviceType.SEEK) return
         const ratingList = await rating.reset().getServiceRatingList(this.data.serviceId)
         this.setData({
             ratingList
@@ -82,13 +86,11 @@ Page({
         })
     },
     //立即预约
-    handleOrder(event) {
-        console.log("立即预约");
-      
+    handleOrder() {
         if (!wx.getStorageSync(cache.TOKEN)) {
             wx.navigateTo({
                 url: '/pages/login/login',
-                //当点击立即预约之后检测事件
+                //监听login事件
                 events:{
                     login:()=> {
                         this._checkRole()
@@ -127,11 +129,18 @@ Page({
 
     _checkRole() {
         const userInfo = User.getUserInfoByLocal();
-        if (userInfo && userInfo.id === this.datad.service.publisher.id) {
+        if (userInfo && userInfo.id === this.data.service.publisher.id) {
             this.setData({
                 isPublisher: true
             })
         }
+    },
+
+    //上拉触底--加载更多
+   async  onReachBottom(){
+        if (!rating.hasMoreData) return
+       const ratingList = await  rating.getServiceRatingList(this.data.serviceId)
+       this.setData({ratingList})
     },
 
 

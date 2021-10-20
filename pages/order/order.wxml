@@ -1,2 +1,21 @@
-<!--pages/order/order.wxml-->
-<text>pages/order/order.wxml</text>
+<view class="container">
+    <view class="address" bind:tap="handleSelectAddress">
+        <i-icon name="map" size="50" color='#333333'/>
+        <view wx:if="{{address}}" class="address-info">
+            <view class="location-info">
+                {{address.provinceName}}{{address.cityName}}{{address.countyName}}{{address.detailInfo}}
+            </view>
+            <view class="contact-info">{{address.userName}} {{address.telNumber}}</view>
+        </view>
+        <view wx:else class="notice-text">
+            选择地址
+        </view>
+    </view>
+    <view class="service-card">
+        <i-service-preview service="{{service}}"></i-service-preview>
+    </view>
+    <view class="action-bar">
+        <i-button i-class="i-button" shape="semicircle" bind:tap="handleOrder">立即预约</i-button>
+        <i-safe-area area="bottom"/>
+    </view>
+</view>

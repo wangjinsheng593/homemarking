@@ -6,8 +6,8 @@ class Token {
         const res = await Http.request({
             url:'v1/token',
             data:{
-                i_code:APIConfig.iCode,
-                orderNo:APIConfig.orderNo
+                i_code: APIConfig.iCode,
+                order_no: APIConfig.orderNo
             },
             method:'POST'
         })

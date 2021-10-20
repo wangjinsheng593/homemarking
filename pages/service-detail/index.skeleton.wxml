@@ -1,0 +1,101 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/10/20 下午4:38:45
+使用方法：
+在 D:\work\WeChat\homemarking\pages\service-detail\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 D:\work\WeChat\homemarking\pages\service-detail\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="container">
+      <view class="inner-container">
+        <view class="service-info">
+          <view class="cover-image">
+            <image mode="widthFix" style="height: 303.413px;" class="sk-image"></image>
+          </view>
+          <view class="row">
+            <view class="title sk-transparent sk-text-18-7500-678 sk-text">专业室内装修设计服务</view>
+            <view class="category">
+              <view is="components/icon/icon">
+                <view class="icon--iconfont icon--icon-biaoqian sk-pseudo sk-pseudo-circle" style="font-size: 17px;color: #f27013"></view>
+              </view>
+              <view class="tag-text sk-transparent sk-text-18-7500-89 sk-text">
+                装修
+              </view>
+            </view>
+          </view>
+          <view class="row">
+            <view class="publisher">
+              <view is="components/avatar/index">
+                <view class="avatar-index--container">
+                  <view class="avatar-index--avatar">
+                    <image class="avatar-index--avatar-image sk-image" style="width: 30px;height: 30px;border-radius: 50%"></image>
+                  </view>
+                  <view class="avatar-index--nickname sk-transparent sk-text-18-7500-280 sk-text" style="font-size: 14px">CJ
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="score sk-transparent sk-text-18-7500-573 sk-text">★ 0</view>
+          </view>
+          <view class="row">
+            <view class="create-time sk-transparent sk-text-18-7500-995 sk-text">2021-09-14 23:23:08</view>
+          </view>
+          <view class="row row-space-between">
+            <view class="price sk-transparent">
+              <text class="label sk-transparent sk-opacity">￥</text>3999.00
+            </view>
+          </view>
+          <view class="row">
+            <view class="description sk-transparent sk-text-18-7500-134 sk-text">
+              十年专业装修设计团队，为您打造个性化的轻奢温馨私人住宅。
+            </view>
+          </view>
+        </view>
+        <view class="service-rating">
+          <view class="service-rating-title sk-transparent sk-text-18-7500-758 sk-text" style="border: none;">历史评价</view>
+          <view>
+            <view is="components/show-status/show-status">
+              <view class="status--container sk-transparent" style="margin-top: 75px;">
+                暂时还没有任何服务
+                <view class="status--extend"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="action-bar" style="border: none;">
+        <view is="pages/service-detail/components/consumer-action/consumer-action">
+          <view class="action--action-bar-item">
+            <view is="components/button/button">
+              <label for="imooc">
+                <view class="button--i-button-special sk-transparent" style="color:#333333;">
+                  <view is="components/icon/icon" style="margin-right:5px">
+                    <view class="icon--iconfont icon--icon-telephone sk-pseudo sk-pseudo-circle" style="font-size: 17px;color: #333333"></view>
+                  </view>联系对方</view>
+              </label>
+            </view>
+            <view is="components/button/button">
+              <label for="imooc">
+                <view class="button--i-button button--shape-semicircle button--medium button--i-class sk-transparent sk-text-18-7500-361 sk-text" style="background-color:#f3d066;color:#333333;">立即预约</view>
+              </label>
+            </view>
+          </view>
+        </view>
+        <view is="components/safe-area/safe-area">
+          <view class="area--safe-area-bottom"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

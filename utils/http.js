@@ -11,23 +11,24 @@ class Http {
         method = 'GET',
         refetch = true
     }) {
-        let  res
+        let res
         try {
-             res = await wxToPromise('request', {
+            res = await wxToPromise('request', {
                 url: APIConfig.baseUrl + url,
                 data,
                 method,
-                header:{
-                    token:wx.getStorageSync(cache.TOKEN)
+                header: {
+                    'content-type': 'application/json',
+                    'token': wx.getStorageSync(cache.TOKEN)
                 }
             })
-            
+
         } catch (error) {
             Http._showError(-1)
             throw new Error(e.errMsg)
-            
+
         }
-      
+
         //全局的统一响，应异常处理
         //请求成功
         if (res.statusCode < 400) {
@@ -42,10 +43,15 @@ class Http {
                 })
             }
             if (refetch) {
-                return await Http._refetch({url,data, method,refetch })
+                return await Http._refetch({
+                    url,
+                    data,
+                    method,
+                    refetch
+                })
             }
-            
-            
+
+
         }
         Http._showError(res.data.error_code, res.data.message)
         const error = Http._generateMessage(res.data.message)

@@ -22,6 +22,7 @@ Page({
         const res = await wx.getUserProfile({
             desc: '完善用户信息',
         })
+        console.log('登陆失败，请稍后重试',res.userInfo)
         wx.showLoading({
             title: '正在授权',
             mask:true
@@ -29,15 +30,17 @@ Page({
         try {
             await User.login()
             await User.updateUserInfo(res.userInfo)
+            //这个对象是管理页面通信的
             const events = this.getOpenerEventChannel()
+            //触发服务详情events里面的login方法
             events.emit('login')
             wx.navigateBack()
         } catch(e) {
+            
             wx.showModal({
               title: '注意',
               content:'登录失败，请稍后重试'
             })
-            console.log("try调试：",e)
         }
         wx.hideLoading()
     },

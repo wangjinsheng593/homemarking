@@ -1,59 +1,62 @@
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
 <wxs src='/common/wxs/status-text.wxs' module="statusText"></wxs>
-
-
 <view class="container">
-    <view class="service-info">
-        <view class="cover-image">
-            <image mode="widthFix" src="{{service.cover_image.path}}"></image>
-        </view>
-        <view class="row">
-            <view class="title">{{service.title}}</view>
-            <view class="category">
-                <i-icon name="biaoqian" color="#f27013"></i-icon>
-                <view class="tag-text">
-                    {{service.category.name}}
+    <view class="inner-container">
+        <view class="service-info">
+            <view class="cover-image">
+                <image mode="widthFix" src="{{service.cover_image.path}}"></image>
+            </view>
+            <view class="row">
+                <view class="title">{{service.title}}</view>
+                <view class="category">
+                    <i-icon name="biaoqian" color="#f27013"></i-icon>
+                    <view class="tag-text">
+                        {{service.category.name}}
+                    </view>
+                </view>
+            </view>
+            <view class="row">
+                <view class="publisher">
+                    <i-avatar shape="circle" src="{{service.publisher.avatar}}" text="{{service.publisher.nickname}}"
+                        size="60">
+                    </i-avatar>
+                </view>
+                <view wx:if="{{service.type === serviceTypeEnum.PROVIDE}}" class="score">★ {{service.score}}</view>
+            </view>
+            <view class="row">
+                <view class="create-time">{{service.create_time}}</view>
+            </view>
+            <view class="row row-space-between">
+                <view class="price">
+                    <text class="label">￥</text>{{service.price}}
+                </view>
+                <view class="sales-volume" wx:if="{{service.type === service.type === serviceType.PROVIDE}}">已售
+                    {{service.sales_volume}}</view>
+            </view>
+            <view class="row">
+                <view class="description">
+                    {{service.description}}
                 </view>
             </view>
         </view>
-        <view class="row">
-            <view class="publisher">
-                <i-avatar shape="circle" src="{{service.publisher.avatar}}" text="{{service.publisher.nickname}}"
-                    size="60">
-                </i-avatar>
+        <view wx:if="{{isPublisher}}" class="service-status">
+            <view>服务状态</view>
+            <view>{{statusText.convert(service.status)}}</view>
+        </view>
+        <view class="service-rating" wx:if="{{service.type===serviceTypeEnum.PROVIDE}}">
+            <view class="service-rating-title">历史评价</view>
+            <view wx:if="{{ratingList.length}}" class="service-rating-list">
+                <view class="service-rating-item" wx:for="{{ratingList}}" wx:key="index">
+                    <i-service-rating rating="{{item}}"></i-service-rating>
+                </view>
             </view>
-            <view wx:if="{{service.type === serviceTypeEnum.PROVIDE}}" class="score">★ {{service.score}}</view>
-        </view>
-        <view class="row">
-            <view class="create-time">{{service.create_time}}</view>
-        </view>
-        <view class="row row-space-between">
-            <view class="price">
-                <text class="label">￥</text>{{service.price}}
-            </view>
-            <view class="sales-volume" wx:if="{{service.type === service.type === serviceType.PROVIDE}}">已售
-                {{service.sales_volume}}</view>
-        </view>
-        <view class="row">
-            <view class="description">
-                {{service.description}}
+            <view wx:else>
+                <i-show-status show content="暂时还没有任何服务" top="150"></i-show-status>
             </view>
         </view>
     </view>
-    <view wx:if="{{isPublisher}}" class="service-status">
-        <view>服务状态</view>
-        <view>{{statusText.convert(service.status)}}</view>
-    </view>
-    <view class="service-rating" wx:if="{{service.type===serviceTypeEnum.PROVIDE}}">
-        <view class="service-rating-title">历史评价</view>
-        <view wx:if="{{ratingList.length}}" class="service-rating-list">
-            <view class="service-rating-item" wx:for="{{ratingList}}" wx:key="index">
-                <i-service-rating rating="{{item}}"></i-service-rating>
-            </view>
-        </view>
-        <view wx:else>
-            <i-show-status show content="暂时还没有任何服务" top="150"></i-show-status>
-        </view>
-    </view>
+
     <view class="action-bar">
         <i-publisher-action wx:if="{{isPublisher}}" service="{{service}}" bind:update="handleUpdateStatus"
             bind:edit="handleEditService">
