@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.uploader-item{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160rpx;
+    height: 160rpx;
+    margin: 20rpx;
+}
+.display-image{
+    width: 100%;
+    height: 100%;
+}
+.icon-uploading,.icon-delete,.error{
+    position: absolute;
+    z-index: 2;
+    padding: 8rpx 10rpx;
+    background-color: #333333;
+    opacity: 0.7;
+}
+
+.icon-delete {
+    border-radius: 50%;
+    overflow: hidden;
+    top: -20rpx;
+    right: -20rpx;
+}
+
+.error {
+    color: #ffffff;
+    font-size: 20rpx;
+}
+
+.choose-image {
+    width: 160rpx;
+    height: 160rpx;
+    background-color: #efefef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20rpx;
+}

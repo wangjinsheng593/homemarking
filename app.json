@@ -63,7 +63,9 @@
         "i-service-rating": "/components/service-rating/index",
         "i-safe-area": "/components/safe-area/safe-area",
         "i-button": "/components/button/button",
-        "mp-msg": "weui-miniprogram/msg/msg"
+        "mp-msg": "weui-miniprogram/msg/msg",
+        "mp-form": "weui-miniprogram/form/form",
+        "mp-cell": "weui-miniprogram/cell/cell"
     },
     "useExtendedLib": {
         "weui": true

@@ -1,2 +1,3 @@
-<!--pages/publish/publish.wxml-->
-<text>pages/publish/publish.wxml</text>
+<view class="contartent">
+    <i-service-form></i-service-form>
+</view>
