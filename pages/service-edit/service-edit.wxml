@@ -1,2 +1,3 @@
-<!--pages/service-edit/service-edit.wxml-->
-<text>pages/service-edit/service-edit.wxml</text>
+<view class="container">
+    <i-service-form form="{{formData}}" bind:submit="handleSubmit"></i-service-form>
+</view>

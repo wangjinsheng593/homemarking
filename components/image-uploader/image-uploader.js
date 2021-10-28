@@ -79,6 +79,7 @@ Component({
      */
     methods: {
         handlePreview(event) {
+            this.triggerEvent("hidepage")
             const index = getEventParam(event, 'value')
             const urls = this.data._files.map(item => item.path)
             wx.previewImage({
@@ -86,7 +87,7 @@ Component({
                 current: urls[index]
             })
         },
-        handleDalete(event) {
+        handleDelete(event) {
             const index = getEventParam(event, 'value')
             const deleted = this.data._files.splice(index, 1)
             this.setData({
@@ -99,6 +100,7 @@ Component({
         },
 
         async handleChooseImage(event) {
+            this.triggerEvent("hidepage")
             const res = await wx.chooseImage({
                 //选择的最大数量
                 count: this.data.maxCount,
@@ -144,14 +146,14 @@ Component({
             for (const file of uploadTask) {
                 try {
                    const res =  await FileUploader.upload(file.path,file.key)
-                   file.id = resp[0].id
+                   file.id = res[0].id
                    file.status = this.data.uploadStatusEnum.SUCCESS
                    this.data._files[file.key] = file
                    success.push(file)
                 } catch (error) {
                     file.status = this.data.uploadStatusEnum.ERROR
-                    file.error =e
-                    this.triggerEvent('uploadfail',{file,error:e})
+                    file.error =error
+                    this.triggerEvent('uploadfail',{file,error:error})
                 }
             }
             this.setData({

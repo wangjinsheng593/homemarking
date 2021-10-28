@@ -38,10 +38,11 @@
         "minifyWXSS": true,
         "disableUseStrict": false,
         "showES6CompileOption": false,
-        "useCompilerPlugins": false
+        "useCompilerPlugins": false,
+        "minifyWXML": true
     },
     "compileType": "miniprogram",
-    "libVersion": "2.20.0",
+    "libVersion": "2.20.1",
     "appid": "wxe21dd707bea6a1b9",
     "projectname": "homemarking",
     "debugOptions": {

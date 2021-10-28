@@ -6,7 +6,7 @@ import Base from "./base"
 //本身的实现不依赖状态和属性的就则使用静态方法
 //总结：1.调用静态方法本质就是调用类方法，2.实例化调用本质是在调用对象的方法
 //定义模型
-class Service extends Base{  
+class Service extends Base {
     //base 继承，一个父类可以有很多个子类
     /**
      * 分页获取服务列表
@@ -40,15 +40,32 @@ class Service extends Base{
         })
     }
 
-    static updateServiceStatus(serviceId,action){
+    static updateServiceStatus(serviceId, action) {
         return Http.request({
-            url:`v1/service/${serviceId}`,
-            data:{
+            url: `v1/service/${serviceId}`,
+            data: {
                 action
             }
         })
     }
- 
+
+    //发布服务
+    static publishService(formData) {
+        return Http.request({
+            url: "v1/service",
+            data: formData,
+            method:"POST"
+        })
+    }
+
+    //修改服务
+    static editService(serviceId,formData) {
+        return Http.request({
+            url: `v1/service/${serviceId}`,
+            data: formData,
+            method:"PUT"
+        })
+    }
 
 }
 export default Service

@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "navigationBarBackgroundColor": "#f3d066",
+  "navigationBarTitleText": "修改服务",
+  "usingComponents": {
+    "i-service-form":"./../../components/service-form/service-form"
+  }
 }

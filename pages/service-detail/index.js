@@ -70,7 +70,6 @@ Page({
     },
     //修改服务
     handleEditService() {
-        console.log("修改服务");
         const service = JSON.stringify(this.data.service)
         wx.navigateTo({
           url:`/pages/service-edit/service-edit?service=${service}` ,
