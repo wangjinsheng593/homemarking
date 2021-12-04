@@ -5,5 +5,6 @@ const timConfig = {
     },
     // 普通级别，日志量较多，接入时建议使用
     logLevel:0,
+
 }
 export default timConfig
