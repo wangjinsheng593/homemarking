@@ -1,0 +1,18 @@
+<view class="container">
+    <view class="message-list">
+        <view wx:for="{{messageList}}" wx:key="index">
+            <i-message message="{{item}}" bind:send="handleSendLink" bind:select='handleSelect'></i-message>
+        </view>
+    </view>
+    <view class="action-bar">
+        <view class="inner-container">
+            <i-icon color='#333333' size='60' name='picture' bind:tap='handleSendImage'></i-icon>
+            <textarea value="{{text}}" class="conversation-textarea" auto-height cursor-spacing="{{30}}"
+                disable-default-padding fixed hold-keyboard placeholder="请输入" bind:tap='handleInput'>
+           </textarea>
+            <i-button shap='circle' size="mini" bind:tap='handleSend'>发 送</i-button>
+            <i-safe-area area='bottom'></i-safe-area>
+        </view>
+    </view>
+
+</view>

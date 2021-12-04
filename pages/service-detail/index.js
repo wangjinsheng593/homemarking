@@ -77,7 +77,6 @@ Page({
     },
     //联系对方
     handleChat() {
-        console.log("联系对方");
         const targetUserId = this.data.service.publisher.id 
         const service = JSON.stringify(this.data.service)
         wx.navigateTo({

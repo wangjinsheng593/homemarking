@@ -1,2 +1,9 @@
-<!--pages/conversation/conversation.wxml-->
-<text>pages/conversation/conversation.wxml</text>
+<view class="container" wx:if="{{sdkReady}}">
+     <!-- 消息列表 -->
+     <i-conversation-window targetUserId='{{targetUserId}}' service="{{service}}"></i-conversation-window>
+</view>
+<view wx:else>
+    <i-show-status top="500" show content="会话加载失败...">
+        <i-button shape="semicircle" bind:tap='handleLogin'>点击刷新</i-button>
+    </i-show-status>
+</view>

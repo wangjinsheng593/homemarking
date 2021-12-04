@@ -1,0 +1,28 @@
+{
+  "name": "homemarking",
+  "version": "1.0.0",
+  "description": "家政小程序",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangjinsheng593/homemarking.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangjinsheng593/homemarking/issues"
+  },
+  "homepage": "https://github.com/wangjinsheng593/homemarking#readme",
+  "dependencies": {
+    "tim-upload-plugin": "^1.0.3",
+    "tim-wx-sdk-ws": "^2.12.0",
+    "mobx-miniprogram": "4.13.2",
+    "mobx-miniprogram-bindings": "2.0.0"
+  }
+}

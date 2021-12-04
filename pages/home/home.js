@@ -5,6 +5,7 @@ import Category from "../../model/category"
 import {
     throttle
 } from "../../utils/utils"
+import Tim from "../../model/tim.js";
 //模型类必须实列化之后才能使用
 const sevice = new Service();
 Page({
@@ -25,6 +26,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: async function (options) {
+        //实例化获取类实例
+        Tim.getInstance()
         await this._getServiceList()
         await this._getCategoryList()
         this.setData({

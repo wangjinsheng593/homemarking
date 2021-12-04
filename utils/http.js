@@ -3,6 +3,8 @@ import cache from "../config/cache.js"
 import exceptionMessage from "../config/exception-message"
 import User from "../model/user.js"
 import wxToPromise from "./wx.js"
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import { timStore } from "../store/tim";
 class Http {
     //不需要用到类的属性，定义静态方法，所以不需要先实例化
     static async request({
@@ -10,7 +12,7 @@ class Http {
         data,
         method = 'GET',
         refetch = true
-    }) {
+    }) { 
         let res
         try {
             res = await wxToPromise('request', {
@@ -36,8 +38,16 @@ class Http {
         }
         //请求失败
         if (res.statusCode === 401) {
+            this.storeBindings = createStoreBindings(this, {
+                store:timStore,
+                fields: ["sdkReady"],
+                actions: {timLogout:"logout"},
+              });
             // TODO 令牌相关
             if (res.data.error_code === 10001) {
+                if (this.sdkReady) {
+                    this.timLogout()
+                }
                 wx.navigateTo({
                     url: '/pages/login/login',
                 })
@@ -49,6 +59,9 @@ class Http {
                     method,
                     refetch
                 })
+            }
+            if (this.sdkReady) {
+                this.timLogout()
             }
 
 

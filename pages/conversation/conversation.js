@@ -1,66 +1,44 @@
-// pages/conversation/conversation.js
+import {
+    createStoreBindings
+} from "mobx-miniprogram-bindings";
+import {
+    timStore
+} from "../../store/tim";
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        targetUserId:null,
+        service:null
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.storeBindings = createStoreBindings(this, {
+            store: timStore,
+            fields: ["sdkReady"],
+        });
+        this.setData({
+            targetUserId:'user1',//options.targetUserId,
+            service:options.service
+        })
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
+    //点击刷新
+    handleLogin(){
+        wx.navigateTo({
+          url: '/pages/login/login',
+        })
 
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
+    //页面卸载
+    onUnload() {
+        this.storeBindings.destroyStoreBindings()
     },
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
 
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
 })
